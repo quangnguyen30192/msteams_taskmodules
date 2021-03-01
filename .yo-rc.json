@@ -1,0 +1,9 @@
+{
+  "generator-teams": {
+    "promptValues": {
+      "developer": "Personio"
+    },
+    "libraryName": "youTubePlayer",
+    "generator-version": "3.0.2"
+  }
+}
