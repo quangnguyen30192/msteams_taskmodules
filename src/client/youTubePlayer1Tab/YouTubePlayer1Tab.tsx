@@ -5,7 +5,6 @@ import {
     Text,
     Button,
     Header,
-    ThemePrepared,
     teamsTheme,
     teamsDarkTheme,
     teamsHighContrastTheme,
@@ -57,7 +56,22 @@ export const YouTubePlayer1Tab = () => {
 
     const onChangeVideo = (
         event: React.MouseEvent<HTMLButtonElement>
-    ): void => {};
+    ): void => {
+        const taskModuleInfo = {
+            title: "YouTube Video Selector",
+            url: appRoot() + `/youTubePlayer1Tab/selector.html?theme={theme}&vid=${youTubeVideoId}`,
+            width: 350,
+            height: 150
+        };
+
+        const submitHandler = (err: string, result: string): void => {
+            console.log(err);
+            setYouTubeVideoId(result);
+        };
+
+        microsoftTeams.tasks.startTask(taskModuleInfo, submitHandler);
+
+    };
 
     /**
    * The render() method to create the UI of the tab
