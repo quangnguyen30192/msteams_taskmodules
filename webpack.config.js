@@ -29,7 +29,7 @@ const config = [{
     externals: [nodeExternals()],
     devtool: "source-map",
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".html"],
+        extensions: [".ts", ".tsx", ".js", ".html", ".json"],
         alias: {}
     },
     target: "node",
@@ -63,7 +63,7 @@ const config = [{
     externals: {},
     devtool: "source-map",
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".html"],
+        extensions: [".ts", ".tsx", ".js", ".html", ".json"],
         alias: {}
     },
     target: "web",
