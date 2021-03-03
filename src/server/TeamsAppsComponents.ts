@@ -4,3 +4,5 @@ export const nonce = {}; // Do not remove!
 export * from "./youTubePlayer1Tab/YouTubePlayer1Tab";
 
 export * from "./youTubePlayer1Tab/VideoSelectorTaskModule";
+
+export * from "./learningTeamsBot/LearningTeamsBot";

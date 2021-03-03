@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.8/MicrosoftTeams.schema.json",
   "manifestVersion": "1.8",
   "id": "{{APPLICATION_ID}}",
-  "version": "{{VERSION}}",
+  "version": "1.0.0",
   "packageName": "{{PACKAGE_NAME}}",
   "developer": {
     "name": "Personio",
@@ -34,7 +34,27 @@
       ]
     }
   ],
-  "bots": [],
+  "bots": [
+    {
+      "botId": "{{MICROSOFT_APP_ID}}",
+      "scopes": [
+        "personal"
+      ],
+      "supportsFiles": false,
+      "isNotificationOnly": false,
+      "commandLists": [
+        {
+          "scopes": [ "personal" ],
+          "commands": [
+            {
+              "title": "MentionMe",
+              "description": "Sends message with @mention of the sender"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "connectors": [],
   "composeExtensions": [],
   "permissions": [
