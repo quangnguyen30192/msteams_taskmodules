@@ -125,3 +125,14 @@ SET DEBUG=msteams
 ```
 
 If you are using Microsoft Azure to host your Microsoft Teams app, then you can add `DEBUG` as an Application Setting with the value of `msteams`.
+
+## Local development environment:
+- `yarn`
+- Go to azure => create a bot 
+- Update .env for APPLICATION_ID, MICROSOFT_APP_ID, MICROSOFT_APP_PASSWORD
+- `gulp ngrok-serve`
+- Get the ngrok hash, go to azure, update bot endpoint: `https://<ngrok-hash>.ngrok.io/api/messages`
+- From Teams: sideload the zip file under `package`
+- Try the bot in Teams conversation:
+  + chat `MentionMe` => the bot replies back the mention
+  + chat any random string => the bot replies back the options to show up modal dialogs, play arround with them
