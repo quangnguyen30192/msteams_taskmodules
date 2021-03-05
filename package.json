@@ -5,10 +5,18 @@
   "scripts": {
     "start": "node dist/server.js",
     "build": "gulp build",
-    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx --fix",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx --quiet --fix",
+    "lint-css": "stylelint src/**/*.scss",
     "debug": "gulp serve --debug",
     "serverok": "gulp ngrok-serve",
-    "serve": "gulp serve"
+    "serve": "gulp serve",
+    "prettier:write": "prettier --parser typescript --write \"./src/**/*.{ts,tsx}\"",
+    "test:coverage": "yarn test --coverage",
+    "test:watch": "yarn test --watch",
+    "test": "jest --passWithNoTests",
+    "type:check": "yarn tsc --noEmit",
+    "gulp:tasks": "gulp --tasks"
   },
   "dependencies": {
     "@fluentui/react-northstar": "~0.52.0",
@@ -26,6 +34,41 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "msteams-react-base-component": "^3.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint:fix",
+      "yarn prettier:write"
+    ],
+    "*.{css,scss}": [
+      "yarn prettier:write"
+    ],
+    "*.{md,html,json}": [
+      "yarn prettier:write"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!**/node_modules/**"
+    ],
+    "testRegex": "src/.*(\\.(test|spec))\\.(tsx?)$",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/src/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/config/tests/setup.ts"
+    ],
+    "testResultsProcessor": "jest-sonar-reporter",
+    "coverageReporters": [
+      "lcov"
+    ]
   },
   "devDependencies": {
     "@types/debug": "4.1.5",
@@ -57,7 +100,9 @@
     "webpack": "5.0.0",
     "yargs": "^16.0.3",
     "yoteams-build-core": "^1.0.0",
-    "webpack-node-externals": "^2.5.2"
+    "webpack-node-externals": "^2.5.2",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1"
   },
   "browserslist": [
     "> 1%",
