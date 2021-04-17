@@ -1,3 +1,4 @@
+This is the sourcecode for the trainning material msteams: [Collect Input in Microsoft Teams with Task Modules - Learn | Microsoft Docs](https://docs.microsoft.com/en-us/learn/modules/msteams-task-modules/)
 # YouTube Player - Microsoft Teams App
 
 Generate a Microsoft Teams application.
