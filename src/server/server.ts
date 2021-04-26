@@ -27,7 +27,7 @@ express.use(
   Express.json({
     verify: (req, res, buf: Buffer, encoding: string): void => {
       (req as any).rawBody = buf.toString();
-    }
+    },
   })
 );
 express.use(Express.urlencoded({ extended: true }));
@@ -54,7 +54,7 @@ express.use(MsTeamsApiRouter(allComponents));
 express.use(
   MsTeamsPageRouter({
     root: path.join(__dirname, "web/"),
-    components: allComponents
+    components: allComponents,
   })
 );
 
@@ -62,7 +62,7 @@ express.use(
 express.use(
   "/",
   Express.static(path.join(__dirname, "web/"), {
-    index: "index.html"
+    index: "index.html",
   })
 );
 

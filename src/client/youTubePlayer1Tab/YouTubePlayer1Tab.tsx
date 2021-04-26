@@ -8,7 +8,7 @@ import {
   teamsTheme,
   teamsDarkTheme,
   teamsHighContrastTheme,
-  Input
+  Input,
 } from "@fluentui/react-northstar";
 import { useState, useEffect } from "react";
 import { useTeams } from "msteams-react-base-component";
@@ -49,7 +49,7 @@ export const YouTubePlayer1Tab = () => {
       title: "YouTube Player" + appRoot(),
       url: appRoot() + `/youTubePlayer1Tab/player.html?vid=${youTubeVideoId}`,
       width: 1000,
-      height: 700
+      height: 700,
     };
     microsoftTeams.tasks.startTask(taskModuleInfo);
   };
@@ -61,7 +61,7 @@ export const YouTubePlayer1Tab = () => {
         appRoot() +
         `/youTubePlayer1Tab/selector.html?theme={theme}&vid=${youTubeVideoId}`,
       width: 350,
-      height: 150
+      height: 150,
     };
 
     const submitHandler = (err: string, result: string): void => {
@@ -92,7 +92,7 @@ export const YouTubePlayer1Tab = () => {
       title: "YouTube Video Selector",
       card: adaptiveCard,
       width: 350,
-      height: 250
+      height: 250,
     };
 
     const submitHandler = (err: string, result: any): void => {
@@ -109,7 +109,7 @@ export const YouTubePlayer1Tab = () => {
         fill={true}
         column
         styles={{
-          padding: ".8rem 0 .8rem .5rem"
+          padding: ".8rem 0 .8rem .5rem",
         }}
       >
         <Flex.Item>
@@ -130,7 +130,7 @@ export const YouTubePlayer1Tab = () => {
         </Flex.Item>
         <Flex.Item
           styles={{
-            padding: ".8rem 0 .8rem .5rem"
+            padding: ".8rem 0 .8rem .5rem",
           }}
         >
           <Text size="smaller" content="(C) Copyright Personio" />

@@ -8,7 +8,7 @@ import {
   teamsTheme,
   teamsDarkTheme,
   teamsHighContrastTheme,
-  Input
+  Input,
 } from "@fluentui/react-northstar";
 import { useState, useEffect } from "react";
 import { useTeams, getQueryVariable } from "msteams-react-base-component";
