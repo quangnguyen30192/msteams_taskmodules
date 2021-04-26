@@ -8,7 +8,7 @@ import {
   TaskModuleTaskInfo,
   TurnContext,
   TaskModuleRequest,
-  TaskModuleResponse
+  TaskModuleResponse,
 } from "botbuilder";
 import * as Util from "util";
 
@@ -43,8 +43,8 @@ export class LearningTeamsBot extends TeamsActivityHandler {
                 value: {
                   type: "task/fetch",
                   taskModule: "player",
-                  videoId: "aHoRK8cr6Og"
-                }
+                  videoId: "aHoRK8cr6Og",
+                },
               },
               {
                 type: "invoke",
@@ -52,8 +52,8 @@ export class LearningTeamsBot extends TeamsActivityHandler {
                 value: {
                   type: "task/fetch",
                   taskModule: "player",
-                  videoId: "AQcdZYkFPCY"
-                }
+                  videoId: "AQcdZYkFPCY",
+                },
               },
               {
                 type: "invoke",
@@ -61,18 +61,27 @@ export class LearningTeamsBot extends TeamsActivityHandler {
                 value: {
                   type: "task/fetch",
                   taskModule: "something",
-                  videoId: "hello-world"
-                }
+                  videoId: "hello-world",
+                },
               },
               {
                 type: "invoke",
-                title: "Watch Specific Video",
+                title: "Watch Specific Video by frontend",
                 value: {
                   type: "task/fetch",
-                  taskModule: "selector",
-                  videoId: "QHPBw7F4OL4"
-                }
-              }
+                  taskModule: "selectorByFrontend",
+                  videoId: "QHPBw7F4OL4",
+                },
+              },
+              {
+                type: "invoke",
+                title: "Watch Specific Video By Backend bot",
+                value: {
+                  type: "task/fetch",
+                  taskModule: "selectorByBackend",
+                  videoId: "QHPBw7F4OL4",
+                },
+              },
             ]
           );
           await context.sendActivity({ attachments: [card] });
@@ -87,7 +96,7 @@ export class LearningTeamsBot extends TeamsActivityHandler {
     const mention = {
       mentioned: context.activity.from,
       text: `<at>${new TextEncoder().encode(context.activity.from.name)}</at>`,
-      type: "mention"
+      type: "mention",
     };
 
     const replyActivity = MessageFactory.text(`Hi ${mention.text}`);
@@ -111,12 +120,12 @@ export class LearningTeamsBot extends TeamsActivityHandler {
               title: "YouTube Player",
               url: `https://${process.env.HOSTNAME}/youTubePlayer1Tab/player.html?vid=${request.data.videoId}`,
               width: 1000,
-              height: 700
-            } as TaskModuleTaskInfo
-          }
+              height: 700,
+            } as TaskModuleTaskInfo,
+          },
         } as TaskModuleResponse;
         break;
-      case "selector":
+      case "selectorByFrontend":
         response = {
           task: {
             type: "continue",
@@ -124,9 +133,22 @@ export class LearningTeamsBot extends TeamsActivityHandler {
               title: "YouTube Video Selector",
               card: this.getSelectorAdaptiveCard(request.data.videoId),
               width: 350,
-              height: 250
-            } as TaskModuleTaskInfo
-          }
+              height: 250,
+            } as TaskModuleTaskInfo,
+          },
+        } as TaskModuleResponse;
+        break;
+      case "selectorByBackend":
+        response = {
+          task: {
+            type: "continue",
+            value: {
+              title: "YouTube Video Selector",
+              url: `https://${process.env.HOSTNAME}/youTubePlayer1Tab/selector.html`,
+              width: 350,
+              height: 250,
+            } as TaskModuleTaskInfo,
+          },
         } as TaskModuleResponse;
         break;
       default:
@@ -137,9 +159,9 @@ export class LearningTeamsBot extends TeamsActivityHandler {
               title: "YouTube Player",
               url: `https://${process.env.HOSTNAME}/youTubePlayer1Tab/player.html?vid=X8krAMdGvCQ&default=1`,
               width: 1000,
-              height: 700
-            } as TaskModuleTaskInfo
-          }
+              height: 700,
+            } as TaskModuleTaskInfo,
+          },
         } as TaskModuleResponse;
         break;
     }
@@ -160,9 +182,9 @@ export class LearningTeamsBot extends TeamsActivityHandler {
               type: "TextBlock",
               text: "YouTube Video Selector",
               weight: "bolder",
-              size: "extraLarge"
-            }
-          ]
+              size: "extraLarge",
+            },
+          ],
         },
         {
           type: "Container",
@@ -171,22 +193,22 @@ export class LearningTeamsBot extends TeamsActivityHandler {
               type: "TextBlock",
               text:
                 "Enter the ID of a YouTube video to show in the task module player.",
-              wrap: true
+              wrap: true,
             },
             {
               type: "Input.Text",
               id: "youTubeVideoId",
-              value: defaultVideoId
-            }
-          ]
-        }
+              value: defaultVideoId,
+            },
+          ],
+        },
       ],
       actions: [
         {
           type: "Action.Submit",
-          title: "Update"
-        }
-      ]
+          title: "Update",
+        },
+      ],
     });
   }
 
@@ -201,9 +223,9 @@ export class LearningTeamsBot extends TeamsActivityHandler {
           title: "YouTube Player",
           url: `https://${process.env.HOSTNAME}/youTubePlayer1Tab/player.html?vid=${request.data.youTubeVideoId}`,
           width: 1000,
-          height: 700
-        } as TaskModuleTaskInfo
-      }
+          height: 700,
+        } as TaskModuleTaskInfo,
+      },
     } as TaskModuleResponse;
     return Promise.resolve(response);
   }
